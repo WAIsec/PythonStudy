@@ -11,6 +11,11 @@ q = deque([(0, TileValue[0])])
 
 # 방문한 노드 체크를 위한 배열
 check = [0] * TileTotal
+
+# TileTotal 값이 1일 경우
+if TileTotal == 1:
+    print(0)
+    sys.exit()
     
 # 비교 시작
 while q:
