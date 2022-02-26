@@ -7,7 +7,7 @@ def DFS(start, dfs_check, graph):
     dfs_check[pos] = 1
     for i in range(len(graph)):
         if graph[pos][i] == 1 and dfs_check[i] == 0 :
-            DFS(i + 1, dfs_check, graph)
+            DFS(i + 1, dfs_check, graph)    # 여기서 i+1을 해주지 않고 i를 해서 무한루프가 나온 것!!
 
 # BFS 함수 정의
 def BFS(start, vertex, graph):
