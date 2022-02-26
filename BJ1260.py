@@ -7,8 +7,11 @@ def DFS(start, vertex, dfs_check, graph):
     pos = start - 1
     print(start, end=" ")
     dfs_check[pos] = 1
-    for i in range(vertex):
-        if i in graph[pos] and dfs_check[i] == 0 :
+
+    # graph 내림차순 정렬 -> 인접한 정점이 여러 개인 경우 적은 값의 정점부터 가야한다는 문제 조건 때문
+    graph[pos].sort()
+    for i in graph[pos]:  ## graph[vertex-1] = [4,3,2]
+        if dfs_check[i] == 0 :
             DFS(i + 1, vertex, dfs_check, graph)    # 여기서 i+1을 해주지 않고 i를 해서 무한루프가 나온 것!!
 
 # BFS 함수 정의
