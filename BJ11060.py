@@ -9,6 +9,7 @@ TileValue = list(map(int,input().split()))
 # 시작 노드 입력
 q = deque([(0, TileValue[0])])
 
+
 # 방문한 노드 체크를 위한 배열
 check = [0] * TileTotal
 
