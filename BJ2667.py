@@ -20,53 +20,21 @@ def MakeTable(size):
 # FindGroup(= DFS)
 def FindGroup(x, y, table, verify):
     
-        table[x][y] = -1 # visited
+        table[x][y] = 0 # visited 이거나 건물 없음
         
         verify.append((x,y))
         
-        # size(col)를 벗어나면 안됨 and 옆(우) Index 확인
-        if y + 1 < len(table[x]):
-            # '1'인 경우
-            if table[x][y+1] == 1:
-                # FindGroup 재귀
-                FindGroup(x, y+1, table, verify)
-            # '0' 또는 '-1' 인 경우
-            else:
-                # 해당 Index의 값을 '-1'로 기록 (visited)
-                table[x][y+1] = -1        
+        dx = [0, 0, -1, 1]
+        dy = [-1, 1, 0, 0]
         
-        # size(row)를 벗어나면 안됨 and 밑 Index 확인
-        if x + 1 < len(table):
-            # '1'인 경우
-            if table[x+1][y] == 1:
-                # FindGroup 재귀
-                FindGroup(x+1, y, table, verify)
-            # '0' 또는 '-1' 인 경우
-            else:
-                # 해당 Index의 값을 '-1'로 기록 (visited)
-                table[x+1][y] = -1
-        
-        # size(row)를 벗어나면 안됨 and 위 Index 확인
-        if x - 1 > -1:
-            # '1'인 경우
-            if table[x-1][y] == 1:
-                # FindGroup 재귀
-                FindGroup(x-1, y, table, verify)
-            # '0' 또는 '-1' 인 경우
-            else:
-                # 해당 Index의 값을 '-1'로 기록 (visited)
-                table[x-1][y] = -1
-        
-        # size(col)를 벗어나면 안됨 and 옆(좌) Index 확인
-        if y - 1 > -1:
-            # '1'인 경우
-            if table[x][y-1] == 1:
-                # FindGroup 재귀
-                FindGroup(x, y-1, table, verify)
-            # '0' 또는 '-1' 인 경우
-            else:
-                # 해당 Index의 값을 '-1'로 기록 (visited)
-                table[x][y-1] = -1
+        for i in range(4):
+            # size(col)를 벗어나면 안됨 and 옆(우) Index 확인
+            u, v = x + dx[i], y + dy[i]
+            if 0 <= u < len(table) and 0 <= v < len(table):
+                # '1'인 경우
+                if table[u][v] == 1:
+                    # FindGroup 재귀
+                    FindGroup(u, v, table, verify)
 
 # main
 def main():
@@ -85,11 +53,8 @@ def main():
         # Verify 배열 생성 <- FindGroup에서 반환하는 배열이 있는 경우 받을 그릇
             Verify = []    
         # FindGroup 수행
-            # '0' 인 경우 '-1'로 변경
+            # '0' 인 경우 '0'로 변경
             if table[i][j] == 0:
-                table[i][j] = -1
-            # '-1'인 경우 아무것도 하지 않음.
-            elif table[i][j] == -1:
                 continue
             # '1'을 발견 시 해당 Index(아파트 위치)를 Group(단지)의 시작에 배치
             elif table[i][j] == 1:
