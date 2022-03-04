@@ -52,8 +52,8 @@ def dayCounter(boxTable):
     col_r = len(boxTable[0])
     row_r = len(boxTable) 
     
-    for i in range(len(boxTable)):
-        for j in range(len(boxTable[0])):
+    for i in range(row_r):
+        for j in range(col_r):
             if boxTable[i][j] == 1:
                 q.append((i, j))
 
