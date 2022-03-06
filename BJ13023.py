@@ -25,6 +25,7 @@ def DFS(vertex, cont_rel, visited, adjList):
     global result
     if cont_rel == 4:
         result = 1
+        return
     
     for i in adjList[vertex]:
         if visited[i] == 0:
