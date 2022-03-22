@@ -14,5 +14,4 @@ for i in range(n):
     dp[i] = max(arr[i], dp[i-1]+arr[i])
     
 # dp의 max 값 출력
-print(dp[-1])
 print(max(dp))
